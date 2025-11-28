@@ -4,9 +4,10 @@
 # import configparser
 # import sys
 
-import requests
-from sys import argv
 from configparser import ConfigParser
+from sys import argv
+
+import requests
 
 
 def get_api_key():
@@ -25,7 +26,7 @@ def get_weather(base_url, api_key, city):
     url = "{base_url}/weather?q={location}&units=metric&appid={key}".format(
         base_url=base_url, location=city, key=api_key
     )
-    r = requests.get(url)
+    r = requests.get(url, timeout=10)
     return r.json()
 
 
